@@ -1,6 +1,6 @@
 #ifndef e3Utils_h
 #define e3Utils_h
-#endif
+
 
 #include <stdlib.h>
 // #include <AccelStepper.h>
@@ -16,3 +16,5 @@
 int readline(int readch, char *buffer, int len);
 
 void setupPins();
+
+#endif

@@ -27,22 +27,35 @@ char* EngraveCube::parse(char *cmdBuffer) {
   char *pch;
   // std::string pch2 ="";
 
-  Serial.print("Hai digitato: >");
-  Serial.print(cmdBuffer);
-  Serial.println("<");
+  // Serial.print("Hai digitato: >");
+  // Serial.print(cmdBuffer);
+  // Serial.println("<");
 
   pch = strtok (cmdBuffer," ");
 
-  Serial.print("Il comando è: >");
-  Serial.print(pch);
-  Serial.println("<");
+  // Serial.print("Il comando è: >");
+  // Serial.print(pch);
+  // Serial.println("<");
 
   if (strcmp(pch, "G0") == 0) {
-    return "Riconosciuto il comando G0";
+    return this->cmdG0(cmdBuffer);
   } else if (strcmp(pch, "G28") == 0) {
-    return "Riconosciuto il comando G28";
+    return this->cmdG28(cmdBuffer);
   } else {
-    return "Comando non valido";// + pch + cmdBuffer;
+    return "Comando non valido"; // + pch + cmdBuffer;
   }
 
+}
+
+char* EngraveCube::cmdG0(char *cmdBuffer) {
+  char* stepX
+  while (pch != NULL) {
+    printf ("%s\n",pch);
+    pch = strtok (NULL, " ,.-");
+  }
+  return "Riconosciuto il comando G0";
+}
+
+char* EngraveCube::cmdG28(char *cmdBuffer){
+  return "Riconosciuto il comando G28";
 }

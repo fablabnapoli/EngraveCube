@@ -25,7 +25,13 @@ public:
 
   boolean run();
 
+
 private:
+
+  char* cmdG0(char *cmdBuffer);
+
+  char* cmdG28(char *cmdBuffer);
+
   AccelStepper _stepperX;
   AccelStepper _stepperY;
 
