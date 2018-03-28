@@ -1,6 +1,6 @@
-#include "config.h"
 #include "e3Utils.h"
 #include "EngraveCube.h"
+#include "config.h"
 
 EngraveCube e3 = EngraveCube();
 
@@ -25,6 +25,10 @@ void loop() {
   if (e3.isRunning()) {
     e3.run();
   } else if (readline(Serial.read(), cmdBuffer, 80) > 0) {
+    Serial.print("<< ");
+    Serial.println(cmdBuffer);
+
+    Serial.print(">> ");
     Serial.println(e3.parse(cmdBuffer));
   }
 }

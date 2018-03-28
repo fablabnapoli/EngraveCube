@@ -1,17 +1,26 @@
 
 #define serialBoudRate 9600
 
-// Pins Stepper X
-#define s1_in1 2
-#define s1_in2 3
-#define s1_in3 4
-#define s1_in4 5
+// Configurazione stepper motor X
 
+// Tipo stepper X
+#define sx_Type AccelStepper::FULL4WIRE
+// Pins Stepper X
+#define sx_in1 2
+#define sx_in2 3
+#define sx_in3 4
+#define sx_in4 5
+
+
+
+// Configurazione stepper motor Y
+// Tipo stepper Y
+#define sy_Type AccelStepper::FULL4WIRE
 // Pins Stepper Y
-#define s2_in1 6
-#define s2_in2 7
-#define s2_in3 8
-#define s2_in4 9
+#define sy_in1 6
+#define sy_in2 7
+#define sy_in3 8
+#define sy_in4 9
 
 // Pin endsto Asse X
 #define endStopX 11

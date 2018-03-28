@@ -4,8 +4,8 @@
 
 
 EngraveCube::EngraveCube() {
-  _stepperX = AccelStepper(AccelStepper::FULL4WIRE, s1_in1, s1_in2, s1_in3, s1_in4);
-  _stepperY = AccelStepper(AccelStepper::FULL4WIRE, s2_in1, s2_in2, s2_in3, s2_in4);
+  _stepperX = AccelStepper(sx_Type, sx_in1, sx_in2, sx_in3, sx_in4);
+  _stepperY = AccelStepper(sy_Type, sy_in1, sy_in2, sy_in3, sy_in4);
 }
 
 
@@ -48,11 +48,11 @@ char* EngraveCube::parse(char *cmdBuffer) {
 }
 
 char* EngraveCube::cmdG0(char *cmdBuffer) {
-  char* stepX
-  while (pch != NULL) {
-    printf ("%s\n",pch);
-    pch = strtok (NULL, " ,.-");
-  }
+  char* stepX;
+  // while (pch != NULL) {
+  //   printf ("%s\n",pch);
+  //   pch = strtok (NULL, " ,.-");
+  // }
   return "Riconosciuto il comando G0";
 }
 
