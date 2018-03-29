@@ -4,8 +4,16 @@
 
 
 EngraveCube::EngraveCube() {
+
+  // Inizializzo lo stepper X
   _stepperX = AccelStepper(sx_Type, sx_in1, sx_in2, sx_in3, sx_in4);
+  _stepperX.setMaxSpeed(sx_MaxSpeed);
+  _stepperX.setAcceleration(sx_Accel);
+
+// Inizializzo lo stepper Y
   _stepperY = AccelStepper(sy_Type, sy_in1, sy_in2, sy_in3, sy_in4);
+  _stepperY.setMaxSpeed(sy_MaxSpeed);
+  _stepperY.setAcceleration(sy_Accel);
 }
 
 
@@ -18,10 +26,16 @@ boolean EngraveCube::isRunning() {
 
 }
 
-boolean EngraveCube::run() {
+void EngraveCube::run() {
   _stepperX.run();
   _stepperY.run();
 }
+
+void EngraveCube::runSpeed() {
+  _stepperX.runSpeed();
+  _stepperY.runSpeed();
+}
+
 
 char* EngraveCube::parse(char *cmdBuffer) {
   char *pch;
@@ -40,11 +54,19 @@ char* EngraveCube::parse(char *cmdBuffer) {
   if (strcmp(pch, "G0") == 0) {
     return this->cmdG0(cmdBuffer);
   } else if (strcmp(pch, "G28") == 0) {
-    return this->cmdG28(cmdBuffer);
+    return this->cmdG28();
   } else {
     return "Comando non valido"; // + pch + cmdBuffer;
   }
 
+}
+
+boolean EngraveCube::getEndstopX() {
+  return digitalRead(endStopX);
+}
+
+boolean EngraveCube::getEndstopY() {
+  return digitalRead(endStopY);
 }
 
 char* EngraveCube::cmdG0(char *cmdBuffer) {
@@ -53,9 +75,31 @@ char* EngraveCube::cmdG0(char *cmdBuffer) {
   //   printf ("%s\n",pch);
   //   pch = strtok (NULL, " ,.-");
   // }
-  return "Riconosciuto il comando G0";
+  return ">> G0 [OK]";
 }
 
-char* EngraveCube::cmdG28(char *cmdBuffer){
-  return "Riconosciuto il comando G28";
+char* EngraveCube::cmdG28(){
+
+  _stepperX.setSpeed(sx_MaxSpeed);
+  _stepperY.setSpeed(sy_MaxSpeed);
+
+  _stepperX.move(-1*sx_Dir*sx_sFullRot);
+  _stepperY.move(-1*sy_Dir*sy_sFullRot);
+
+  while (this->getEndstopX() || this->getEndstopY()){
+    this->run();
+  }
+
+  _stepperX.move(sx_Dir*zeroPartX);
+  _stepperY.move(sy_Dir*zeroPartY);
+
+  while (_stepperX.isRunning() || _stepperY.isRunning()){
+    this->run();
+    // this->runSpeed();
+  }
+
+  _stepperX.setCurrentPosition(0);
+  _stepperY.setCurrentPosition(0);
+
+  return ">> G28 [OK]";
 }

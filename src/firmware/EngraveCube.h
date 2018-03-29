@@ -14,23 +14,36 @@
 #include <wiring.h>
 #endif
 
+
+
 class EngraveCube {
 
 public:
+
+  typedef enum name {
+    DIR_CW = 1,
+    DIR_CCW = -1
+  } DIRECTION;
   EngraveCube();
 
   char* parse(char *cmdBuffer);
 
   boolean isRunning();
 
-  boolean run();
+  void run();
 
+  void EngraveCube::runSpeed();
 
-private:
+  boolean getEndstopX();
+
+  boolean getEndstopY();
 
   char* cmdG0(char *cmdBuffer);
 
-  char* cmdG28(char *cmdBuffer);
+  char* cmdG28();
+
+private:
+
 
   AccelStepper _stepperX;
   AccelStepper _stepperY;

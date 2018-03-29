@@ -31,4 +31,16 @@ void setupPins() {
   digitalWrite(laserPin, LOW);
 
   pinMode(resetPin, INPUT);
+
+  // Imposto il pin di controllo dell'end stop X
+  // L'ednstop restituisce LOW/0 quado chiuso e HIGH/1 quando aperto
+  // Usando la resistenza di PULLUP non è richiesta una resistenza fisica
+  // esterna.
+  pinMode(endStopX, INPUT_PULLUP);
+
+  // Imposto il pin di controllo del'end stop Y
+  // L'ednstop restituisce LOW/0 quado chiuso e HIGH/1 quando aperto
+  // Usando la resistenza di PULLUP non è richiesta una resistenza fisica
+  // esterna.
+  pinMode(endStopY, INPUT_PULLUP);
 }
