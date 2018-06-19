@@ -30,7 +30,7 @@ void setupPins() {
   // Forzo ad OFF il laser
   digitalWrite(laserPin, LOW);
 
-  pinMode(resetPin, INPUT);
+  // pinMode(resetPin, INPUT);
 
   // Imposto il pin di controllo dell'end stop X
   // L'ednstop restituisce LOW/0 quado chiuso e HIGH/1 quando aperto
@@ -44,3 +44,17 @@ void setupPins() {
   // esterna.
   pinMode(endStopY, INPUT_PULLUP);
 }
+
+// boolean getValue(char key, char command[], double* value)
+// {
+//
+//   char *strchr_pointer;
+//   // find key parameter
+//   strchr_pointer = strchr(cmdBuffer, key);
+//   if (strchr_pointer != NULL) // We found a key value
+//   {
+//     *value = (double)strtod(&command[strchr_pointer - command + 1], NULL);
+//     return true;
+//   }
+//   return false;
+// }

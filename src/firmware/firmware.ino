@@ -1,22 +1,14 @@
 #include "e3Utils.h"
 #include "EngraveCube.h"
 #include "config.h"
-#include <SerialDebug.h>
-
-#define DEBUG true
-#define DEBUG_LEVEL NOTIFICATION
 
 
 EngraveCube e3 = EngraveCube();
-// SerialDebug debugger = SerialDebug();
 
 void setup() {
-
-  delay(500);
+  delay(1000);
 
   // Inizializzo la comunicazione seriale
-
-
   Serial.begin(serialBoudRate);
 
   // Stampo un messaggio di benvenuto
@@ -29,14 +21,14 @@ void setup() {
 
 void loop() {
   /* code */
-  static char cmdBuffer[80];
+  char cmdBuffer[80];
 
-  if (e3.isRunning()) {
-    e3.run();
-  } else if (readline(Serial.read(), cmdBuffer, 80) > 0) {
+  int cmdLng = readline(Serial.read(), cmdBuffer, 80);
+
+  if ( cmdLng > 0) {
     Serial.print("<< ");
     Serial.println(cmdBuffer);
     // Serial.print(">> ");
-    Serial.println(e3.parse(cmdBuffer));
+    Serial.println(e3.parse(cmdBuffer, cmdLng));
   }
 }

@@ -4,15 +4,16 @@
 // ===================== Coordinate di riferimento =======================
 
 // Coordinata X dello "zero pezzo"
-#define zeroPartX 850
+#define zeroPartX 815
 
 // Coordinata Y dello "zero pezzo"
-#define zeroPartY 950
+#define zeroPartY 900
 
 // =================== Configurazione stepper motor X ====================
 
 // Tipo stepper X
-#define sx_Type AccelStepper::FULL4WIRE
+#define sx_Type AccelStepper::HALF4WIRE
+// #define sx_Type AccelStepper::FULL4WIRE
 
 // Pins Stepper X
 #define sx_in1 2
@@ -23,20 +24,17 @@
 // Direzione di rotazione positiva dello stepper. Può essere:
 // - Oraria -> EngraveCube::DIR_CW
 // - Antioraria -> EngraveCube::DIR_CCW
-#define sx_Dir EngraveCube::DIR_CW
+// #define sx_Dir EngraveCube::DIR_CW
+#define sx_Dir -1
 
 // Passi necessari ad una rotazione completa dello stepper
-#define sx_sFullRot 1000
-
-// Velocità di rotazione ed accelerazioni di default
-#define sx_Speed 500.0
-#define sx_MaxSpeed 4000.0
-#define sx_Accel 20000.0
+#define sx_sFullRot 5000
 
 // =================== Configurazione stepper motor Y ====================
 
 // Tipo stepper Y
-#define sy_Type AccelStepper::FULL4WIRE
+#define sy_Type AccelStepper::HALF4WIRE
+// #define sy_Type AccelStepper::FULL4WIRE
 
 // Pins Stepper Y
 #define sy_in1 6
@@ -47,15 +45,23 @@
 // Direzione di rotazione positiva dello stepper. Può essere:
 // - Oraria -> EngraveCube::DIR_CW
 // - Antioraria -> EngraveCube::DIR_CCW
-#define sy_Dir EngraveCube::DIR_CCW
+// #define sy_Dir EngraveCube::DIR_CW
+#define sy_Dir 1
 
 // Passi necessari ad una rotazione completa dello stepper
-#define sy_sFullRot 1000
+#define sy_sFullRot 5000
 
-// Velocità di rotazione ed accelerazioni di default
-#define sy_Speed 500.0
-#define sy_MaxSpeed 4000.0
-#define sy_Accel 20000.0
+// ======== Configurazione Velocità/accelerazioni di default ===============
+// E' la massima velocità (step/s) ammessa dall'elettronica/meccanica della E^3
+#define defMaxSpeed 800.0
+// E' la massima accelerazione ammessa dall'elettronica/meccanicadella E^3
+#define defMaxAccel 500.0
+// Velocità di rotazione di default
+#define dflSpeed 300.0
+
+// Modalità di calcolo dei movimenti.
+#define dflPositioning ABSOLUTE
+
 
 // =================== Configurazione Endstops ===========================
 
